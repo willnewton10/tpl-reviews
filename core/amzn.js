@@ -97,19 +97,15 @@ function getLink ($u) {
 }
 
 function getAuthors ($u) {
-    var authors = [];
-    $u.find('div.a-row div.a-spacing-none')
+    return $u.find('div.a-row div.a-spacing-none')
 	.first()
 	.find('span.a-size-small')
 	.slice(1)
-	.each(function (i, auth_span) {
-	    authors.push( $(auth_span).text() );
-	});
-    authors = authors.map(function (auth) {
-	return auth.replace(' and ', '');
-    });
-    return authors;
-}
+	.map(function (i, auth_span) {
+	    return $(auth_span).text().replace(' and ', '');
+	})
+	.get();
+};
 
 function getNumReviews ($u) {
     var nr = $u
