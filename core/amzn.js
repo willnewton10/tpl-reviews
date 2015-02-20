@@ -1,8 +1,33 @@
+
+var request = require('request');
+var qs      = require('querystring');
 var cheerio = require('cheerio');
+
+exports.search = function (keywords, callback) {
+    try {
+	var url = exports.url(keywords);
+	request(url, function (err, response, html) {
+	    if (err) callback(err);
+	    var books = exports.parse(html);
+	    callback(null, books);
+	});	
+    } catch (e) {
+	callback(e);
+    }
+};
+
+function url (keywords) {
+    return "http://www.amazon.com/s?" +
+	qs.stringify({ 
+	    rh: 'n:283155,' +  /* probably means: search in Books */
+	    'k:'+keywords.trim(),
+	    page: 1
+	});
+}
 
 var $;
 
-module.exports = function readReviews (html) {
+exports.parse = function (html) {
     $ = cheerio.load(html);
 
     var reviews = [];

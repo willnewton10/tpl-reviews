@@ -1,7 +1,33 @@
+
+var request = require('request');
+var qs      = require('querystring');
 var cheerio = require('cheerio');
 
-module.exports = function readBooks (html) {
-    var $ = cheerio.load(html);
+exports.search = function (keywords, callback) {
+    try {
+	var url = exports.url(keywords);
+	request(url, function (err, response, html) {
+	    if (err) callback(err);
+	    var books = exports.parse(html);
+	    callback(null, books);
+	});
+    } catch (e) {
+	callback(e);
+    }
+};
+
+exports.url = function (keywords) {
+    return "http://www.torontopubliclibrary.ca/search.jsp?" + 
+	qs.stringify({
+	    N: '37751 37918', /* search Real Books */
+	    No: '0',          /* paging            */
+	    Ntt: keywords,
+	    Erp: '100'        /* results per page  */
+	});
+};
+
+exports.parse = function (html) {
+    var $ = cheerio.load(html); 
 
     var books = [];
     var records = $('div.record-result').each(function (i, div) {
