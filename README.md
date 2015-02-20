@@ -35,3 +35,8 @@ amzn.search('my search keywords', function (err, books) {
   console.log(JSON.stringify(books, null, 4));            
 });
 ```
+
+##Usage:
+ 1. You probably need `node.js` and `npm`
+ 2. After cloning, run `npm install` in the directory, since I have the `node_modules` folder in `1.gitignore`
+ 3. The tests are run with `mocha.js`
