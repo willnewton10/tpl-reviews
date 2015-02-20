@@ -1,0 +1,92 @@
+[
+    {
+        "title": "Programming in Python 3 : a complete introduction to the Python language",
+        "author": "Summerfield, Mark",
+        "date": "2009",
+        "holds": 0,
+        "copies": 14,
+        "link": "/detail.jsp?Entt=RDM2502103&R=2502103",
+        "image": "http://syndetics.com/index.aspx?isbn=0137129297/SC.gif"
+    },
+    {
+        "title": "Learning object-oriented programming in C# 5.0",
+        "author": "Harwani, B M",
+        "date": "2015",
+        "holds": 0,
+        "copies": 13,
+        "link": "/detail.jsp?Entt=RDM3204837&R=3204837",
+        "image": "http://syndetics.com/index.aspx?isbn=128585456X/SC.gif"
+    },
+    {
+        "title": "Beginning programming with C++ for dummies",
+        "author": "Davis, Stephen R",
+        "date": "2010",
+        "holds": 2,
+        "copies": 10,
+        "link": "/detail.jsp?Entt=RDM2730229&R=2730229",
+        "image": "http://syndetics.com/index.aspx?isbn=0470617977/SC.gif"
+    },
+    {
+        "title": "Objective-C programming for dummies",
+        "author": "Goldstein, Neal",
+        "date": "2013",
+        "holds": 1,
+        "copies": 10,
+        "link": "/detail.jsp?Entt=RDM2928108&R=2928108",
+        "image": "http://syndetics.com/index.aspx?isbn=111821398X/SC.gif"
+    },
+    {
+        "title": "Ruby programming for the absolute beginner",
+        "author": "Ford, Jerry Lee",
+        "date": "2008",
+        "holds": 0,
+        "copies": 9,
+        "link": "/detail.jsp?Entt=RDM1643241&R=1643241",
+        "image": "http://syndetics.com/index.aspx?isbn=159863397X/SC.gif"
+    },
+    {
+        "title": "Programming in Objective-C 4th ed.",
+        "author": "Kochan, Stephen G",
+        "date": "2012",
+        "holds": 1,
+        "copies": 9,
+        "link": "/detail.jsp?Entt=RDM2855683&R=2855683",
+        "image": "http://syndetics.com/index.aspx?isbn=9780321811905/SC.gif"
+    },
+    {
+        "title": "Pro PHP programming",
+        "author": "MacIntyre, Peter",
+        "date": "2011",
+        "holds": 0,
+        "copies": 9,
+        "link": "/detail.jsp?Entt=RDM2825107&R=2825107",
+        "image": "http://syndetics.com/index.aspx?isbn=1430235608/SC.gif"
+    },
+    {
+        "title": "Beginning Visual C# 2012 programming",
+        "author": "Watson, Karli",
+        "date": "2013",
+        "holds": 2,
+        "copies": 8,
+        "link": "/detail.jsp?Entt=RDM2961136&R=2961136",
+        "image": "http://syndetics.com/index.aspx?isbn=1118314417/SC.gif"
+    },
+    {
+        "title": "Growing object-oriented software, guided by tests",
+        "author": "Freeman, Steve",
+        "date": "2010",
+        "holds": 0,
+        "copies": 8,
+        "link": "/detail.jsp?Entt=RDM2635683&R=2635683",
+        "image": "http://syndetics.com/index.aspx?isbn=0321503627/SC.gif"
+    },
+    {
+        "title": "Beginning programming with C++ for dummies 2nd edition.",
+        "author": "Davis, Stephen R",
+        "date": "2015",
+        "holds": 1,
+        "copies": 8,
+        "link": "/detail.jsp?Entt=RDM3202803&R=3202803",
+        "image": "http://syndetics.com/index.aspx?isbn=1118823877/SC.gif"
+    }
+]

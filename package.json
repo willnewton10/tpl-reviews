@@ -1,0 +1,16 @@
+{
+  "name": "node_tpl_scrape",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "request": "~2.53.0",
+    "cheerio": "~0.18.0",
+    "q": "~1.1.2"
+  }
+}

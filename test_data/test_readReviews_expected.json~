@@ -1,0 +1,116 @@
+[
+    {
+        "title": "A Balanced Introduction to Computer Science (3rd Edition)",
+        "stars": 3.6,
+        "authors": [
+            "David Reed"
+        ],
+        "numReviews": 12,
+        "link": "http://www.amazon.com/Balanced-Introduction-Computer-Science-3rd/dp/0132166755"
+    },
+    {
+        "title": "Python Programming: An Introduction to Computer Science, 2nd Ed.",
+        "stars": 4.6,
+        "authors": [
+            "John Zelle"
+        ],
+        "numReviews": 93,
+        "link": "http://www.amazon.com/Python-Programming-Introduction-Computer-Science/dp/1590282418"
+    },
+    {
+        "title": "Be Prepared for the AP Computer Science Exam in Java",
+        "stars": 4.8,
+        "authors": [
+            "Maria Litvin",
+            "Gary Litvin"
+        ],
+        "numReviews": 9,
+        "link": "http://www.amazon.com/Prepared-Computer-Science-Exam-Java/dp/0982477538"
+    },
+    {
+        "title": "Data Science for Business: What you need to know about data mining and data-analytic thinking",
+        "stars": 4.7,
+        "authors": [
+            "Foster Provost",
+            "Tom Fawcett"
+        ],
+        "numReviews": 92,
+        "link": "http://www.amazon.com/Data-Science-Business-data-analytic-thinking/dp/1449361323"
+    },
+    {
+        "title": "Structure and Interpretation of Computer Programs - 2nd Edition (MIT Electrical Engineering and Computer Science)",
+        "stars": 3.7,
+        "authors": [
+            "Harold Abelson",
+            "Gerald Jay Sussman"
+        ],
+        "numReviews": 202,
+        "link": "http://www.amazon.com/Structure-Interpretation-Computer-Programs-Engineering/dp/0262510871"
+    },
+    {
+        "title": "The Annotated Turing: A Guided Tour Through Alan Turing's Historic Paper on Computability and the Turing Machine",
+        "stars": 4.6,
+        "authors": [
+            "Charles Petzold"
+        ],
+        "numReviews": 33,
+        "link": "http://www.amazon.com/Annotated-Turing-Through-Historic-Computability/dp/0470229055"
+    },
+    {
+        "title": "What Is HTML5?",
+        "stars": 3.3,
+        "authors": [
+            "Brett McLaughlin"
+        ],
+        "numReviews": 124,
+        "link": "http://www.amazon.com/What-HTML5-Brett-McLaughlin-ebook/dp/B005ISQ7JM"
+    },
+    {
+        "title": "Computer Science: An Overview (12th Edition)",
+        "stars": 4.7,
+        "authors": [
+            "Glenn Brookshear",
+            "Dennis Brylow"
+        ],
+        "numReviews": 3,
+        "link": "http://www.amazon.com/Computer-Science-Overview-Glenn-Brookshear/dp/0133760065"
+    },
+    {
+        "title": "What Is Data Science?",
+        "stars": 4.2,
+        "authors": [
+            "Mike Loukides"
+        ],
+        "numReviews": 40,
+        "link": "http://www.amazon.com/What-Data-Science-Mike-Loukides-ebook/dp/B007R8BHAK"
+    },
+    {
+        "title": "Hello World!: Computer Programming for Kids and Other Beginners",
+        "stars": 4.8,
+        "authors": [
+            "Warren Sande",
+            "Carter Sande"
+        ],
+        "numReviews": 28,
+        "link": "http://www.amazon.com/Hello-World-Computer-Programming-Beginners/dp/1617290920"
+    },
+    {
+        "title": "Computer Science: An Overview (10th Edition)",
+        "stars": 4.3,
+        "authors": [
+            "J. Glenn Brookshear"
+        ],
+        "numReviews": 16,
+        "link": "http://www.amazon.com/Computer-Science-Overview-Glenn-Brookshear/dp/0321524039"
+    },
+    {
+        "title": "Concrete Mathematics: A Foundation for Computer Science (2nd Edition)",
+        "stars": 4.5,
+        "authors": [
+            "Ronald L. Graham",
+            "Donald E. Knuth"
+        ],
+        "numReviews": 45,
+        "link": "http://www.amazon.com/Concrete-Mathematics-Foundation-Computer-Science/dp/0201558025"
+    }
+]
