@@ -16,11 +16,11 @@ exports.search = function (keywords, callback) {
     }
 };
 
-function url (keywords) {
+exports.url = function (keywords) {
     return "http://www.amazon.com/s?" +
 	qs.stringify({ 
 	    rh: 'n:283155,' +  /* probably means: search in Books */
-	    'k:'+keywords.trim(),
+	        'k:'+keywords.trim(),
 	    page: 1
 	});
 }
@@ -30,20 +30,20 @@ var $;
 exports.parse = function (html) {
     $ = cheerio.load(html);
 
-    var reviews = [];
-    var records = $('li.s-result-item').each(function (i, ul) {
-	var $u = $(ul);
-	var review = {
-	    title:      errWrap(getTitle, $u),
-	    stars:      errWrap(getStars, $u),
-	    authors:    errWrap(getAuthors, $u),
-	    numReviews: errWrap(getNumReviews, $u),
-	    link:       errWrap(getLink, $u),
-	    image:      errWrap(getImage, $u)
-	};
-	if (isSubstantial(review)) { reviews.push(review); }
-    });
-    return reviews;
+    return $('li.s-result-item')
+	.map(function (i, ul) {
+	    var $u = $(ul);
+	    return {
+		title:      errWrap(getTitle, $u),
+		stars:      errWrap(getStars, $u),
+		authors:    errWrap(getAuthors, $u),
+		numReviews: errWrap(getNumReviews, $u),
+		link:       errWrap(getLink, $u),
+		image:      errWrap(getImage, $u)
+	    };
+	})
+	.get()
+	.filter(isSubstantial);
 };
 
 function isSubstantial(review) {
@@ -83,10 +83,14 @@ function getStars ($u) {
     }
 }
 function getTitle ($u) {
-    return $u.find('a.s-access-detail-page').first().attr('title');
+    return $u.find('a.s-access-detail-page')
+	.first()
+	.attr('title');
 }
 function getLink ($u) {
-    var link = $u.find('a.s-access-detail-page').first().attr('href');
+    var link = $u.find('a.s-access-detail-page')
+	.first()
+	.attr('href');
     link = link.match(/.*amazon\.com\/[^\/]+\/[^\/]+\/[^\/]+/g);
     if (link && link.length > 0) return link[0];
     return '';
