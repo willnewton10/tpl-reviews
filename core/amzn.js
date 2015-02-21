@@ -23,12 +23,10 @@ exports.url = function (keywords) {
 	        'k:'+keywords.trim(),
 	    page: 1
 	});
-}
-
-var $;
+};
 
 exports.parse = function (html) {
-    $ = cheerio.load(html);
+    var $ = cheerio.load(html);
 
     return $('li.s-result-item')
 	.map(function (i, ul) {
@@ -96,15 +94,37 @@ function getLink ($u) {
     return '';
 }
 
+function flatten(t, children, leaf) {
+    if (t.hasOwnProperty(children) && t[children] != undefined)
+        return t[children].reduce(function (pre, cur) {
+	    return pre.concat(flatten(cur, children, leaf));
+	}, []);
+
+    if (t.hasOwnProperty(leaf) && t[leaf] != undefined) {
+	return t[leaf];
+    }
+}
+
 function getAuthors ($u) {
-    return $u.find('div.a-row div.a-spacing-none')
+    var authors = $u.find('div.a-row div.a-spacing-none')
 	.first()
 	.find('span.a-size-small')
 	.slice(1)
-	.map(function (i, auth_span) {
-	    return $(auth_span).text().replace(' and ', '');
+	.map(function (i, authSpan) {
+	    return flatten(authSpan, 'children', 'data');
 	})
-	.get();
+	.get()
+	.reduce(function (pre, cur) {
+	    return pre.concat(cur);
+	}, [])
+	.filter(function (author) {
+	    return author != " and ";
+	})
+	.map(function (author) {
+	    return author.replace(/\s+and\s+/g, '');
+	});
+    
+    return authors;
 };
 
 function getNumReviews ($u) {
