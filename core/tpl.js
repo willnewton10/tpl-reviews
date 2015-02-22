@@ -3,6 +3,8 @@ var request = require('request');
 var qs      = require('querystring');
 var cheerio = require('cheerio');
 
+var baseurl = "http://www.torontopubliclibrary.ca";
+
 exports.search = function (keywords, callback) {
     try {
 	var url = exports.url(keywords);
@@ -17,7 +19,7 @@ exports.search = function (keywords, callback) {
 };
 
 exports.url = function (keywords) {
-    return "http://www.torontopubliclibrary.ca/search.jsp?" + 
+    return baseurl + "/search.jsp?" + 
 	qs.stringify({
 	    N: '37751 37918', /* search Real Books */
 	    No: '0',          /* paging            */

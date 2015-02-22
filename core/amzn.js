@@ -27,7 +27,7 @@ exports.url = function (keywords) {
 
 exports.parse = function (html) {
     var $ = cheerio.load(html);
-
+    console.log("amzn parsing...");
     return $('li.s-result-item')
 	.map(function (i, ul) {
 	    var $u = $(ul);
@@ -52,6 +52,8 @@ function errWrap (f, $u) {
     try {
 	return f($u);
     } catch (e) {
+	console.log("Scrape Error");
+	console.log("    function: " + f.name);
 	console.log(e);
 	return null;
     }
@@ -89,9 +91,14 @@ function getLink ($u) {
     var link = $u.find('a.s-access-detail-page')
 	.first()
 	.attr('href');
-    link = link.match(/.*amazon\.com\/[^\/]+\/[^\/]+\/[^\/]+/g);
-    if (link && link.length > 0) return link[0];
-    return '';
+    if (! link) 
+	return '';
+    
+    var matches = link.match(/.*amazon\.com\/[^\/]+\/[^\/]+\/[^\/]+/g);
+    if (matches.length == 0) 
+	return link;
+
+    return matches[0];
 }
 
 function flatten(t, children, leaf) {

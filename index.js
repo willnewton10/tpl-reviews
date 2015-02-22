@@ -3,6 +3,8 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var bodyParser = require('body-parser');
+var fs = require('fs');
+var qs = require('querystring');
 
 var amzn = require('./core/amzn');
 var tpl = require('./core/tpl');
@@ -15,28 +17,29 @@ var router = express.Router();
 router.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html');
 });
-router.get('/api', function (req, res) {
-    res.json({message: 'hooray! welcomt to our api!'});
-});
-router.route('/api/tpl/:keywords')
-    .get(function (req, res) {
-	var keywords = req.params.keywords.replace('+', ' ');
-	console.log(keywords);
-	tpl.search(keywords, function (err, books) {
-	    if (err) res.json(err);
-	    res.json(books);
-	});
-    });
 
-router.route('/api/amzn/:keywords')
-    .get(function (req, res) {
-	var keywords = req.params.keywords.replace('+', ' ');
-	console.log(keywords);
-	amzn.search(keywords, function (err, books) {
-	    if (err) res.json(err);
-	    res.json(books);
-	});
+router.get('/api/tpl-dummy', function (req, res) {
+    console.log('request: tpl-dummy... %s', req.query.keywords);
+    fs.readFile(__dirname + '/test/data/tpl.json', 'utf-8', function (err, text) {
+	res.json(JSON.parse(text));
     });
+});
+
+router.get('/api/tpl', function (req, res) {
+    console.log('request: tpl... %s', req.query);
+    tpl.search(req.query.keywords, function (err, books) {
+	if (err) res.json(err);
+	res.json(books);
+    });
+});
+
+router.get('/api/amzn', function (req, res) {
+    console.log('request: amzn... %s', req.query);
+    amzn.search(req.query.keywords, function (err, books) {
+	if (err) res.json(err);
+	res.json(books);
+    });
+});
 
 app.use('/', router);
 
