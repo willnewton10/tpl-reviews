@@ -10,7 +10,7 @@ angular.module('tplReviewsApp.controllers', [])
 	    $scope.status = "searching...";
 	    tplApiService.getBooks($scope.searchData)
 		.success(function (response) {
-
+		    console.log("response", response);
 		    $scope.status = response.length > 0 ? "" : "no results found";
 		    $scope.books = response;
 		    $scope.books.forEach(function (book) {

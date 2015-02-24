@@ -1,33 +1,110 @@
 <!doctype html>
-<html>
+<html lang='en'>
   <head>
+    <meta charset="utf-8">
+
+
     <title>TPL Reviews</title>
-    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.js"></script>
   </head>
 
   <body ng-app="tplReviewsApp">
-    <h1>TPL Reviews</h1>
-    <div ng-controller="tplReviewsController">
-    
-      <form ng-submit='search()'>
-	<input ng-model='searchData.keywords' placeholder='enter search terms here' />
-	<button type='submit'>Search</button>
-      </form>
 
 
-      <div ng-repeat="book in books">
-	<h3>{{ book.title }}</h3>
-	<span>{{ book.author }}</span>
-	<ul ng-repeat="review in book.reviews">
-	  <li>{{ review.title }} {{ review.stars }}</li>
-	</ul>
-      </div>
+    <div class="container" ng-controller="tplReviewsController">
       
+      <div class='row'>
+	<div class='col-sm-12'>
+	  <h1>TPL Reviews</h1>   
+	</div>
+      </div>
+
+      
+      <div class='row'>
+	<!-- search form -->
+	<div class='col-sm-6'>
+	  <form ng-submit='search()'>
+	    <input ng-model='searchData.keywords' placeholder='enter search terms here' />
+	    <button type='submit'>Search</button>
+	  </form>
+	</div>
+
+	<!-- search status -->
+	<div class='col-sm-6'>
+	  <div class='alert alert-info' ng-show='status != ""'>
+	    {{ status }}
+	  </div>
+	</div>
+      </div>
+
+
+      <div class='row top-buffer' ng-repeat="book in books">
+	
+	<!-- TPL book image -->
+	<div class='col-sm-1'>
+	  <a href='{{ book.link }}'>
+	    <img src="{{ book.image }}" err-src="http://www.torontopubliclibrary.ca/images/bibs/SC/no-image-book.png" />
+	  </a>
+	</div>
+	
+	<div class='col-sm-11 left-buffer'>
+
+	  <!-- TPL book details -->
+	  <div class='row'>
+	    <div class='col-sm-12'>
+
+	      <div>
+		<a href='{{ book.link }}'>
+		  <span class='badge'>
+		    <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+		  </span>
+		  <strong>{{ book.title }}</strong>
+		</a>
+
+		<div>
+		  holds: {{ book.holds }}
+		  copies: {{ book.copies }}
+		  author: {{ book.author }}
+		</div>
+	      </div>
+
+	      <div ng-repeat="review in book.reviews" >
+		<!-- AMZN review information -->
+		<div class='col-sm-12'>
+		  <span ng-show="review.stars > -1">
+		    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+		    {{ review.stars }} (out of {{ review.numReviews }})
+		  </span>
+		  <span ng-show="review.stars == -1">
+		    (no reviews yet)
+		  </span>
+		    <a href='{{review.link}}' >{{ review.title }}</a>
+		</div>
+	      </div>
+
+	    </div>
+	  </div>
+	</div>
+
+      </div>
+
     </div>
 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script src="/js/app.js"></script>
     <script src="/js/controllers.js"></script>
     <script src="/js/services.js"></script>
+
+    <style>
+      .top-buffer { margin-top:40px; }
+      .left-buffer { padding-left: 50px; }
+      h1 { font-weight: bold; }
+    </style>
+
   </body>
 </html>

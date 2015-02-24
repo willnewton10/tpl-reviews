@@ -83,6 +83,7 @@ function getImage ($d) {
 }
 
 function get1stNum (str) {
+    if (! str) return -1;
     var results = str.match(/\d+/);
     if (results.length > 0) return parseInt(results[0]);
     return -1;
