@@ -3,16 +3,31 @@
   <head>
     <title>TPL Reviews</title>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
- 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.js"></script>
   </head>
-  <body>
-    <h1>TPL Reviews</h1>
-    <form id='search'>
-      <input name='keywords' />
-      <button type='submit'>Search</button>
-    </form>
-    <div id="results"></div>
 
-    <script src="/js/tpl-reviews.js"></script>
+  <body ng-app="tplReviewsApp">
+    <h1>TPL Reviews</h1>
+    <div ng-controller="tplReviewsController">
+    
+      <form ng-submit='search()'>
+	<input ng-model='searchData.keywords' placeholder='enter search terms here' />
+	<button type='submit'>Search</button>
+      </form>
+
+
+      <div ng-repeat="book in books">
+	<h3>{{ book.title }}</h3>
+	<span>{{ book.author }}</span>
+	<ul ng-repeat="review in book.reviews">
+	  <li>{{ review.title }} {{ review.stars }}</li>
+	</ul>
+      </div>
+      
+    </div>
+
+    <script src="/js/app.js"></script>
+    <script src="/js/controllers.js"></script>
+    <script src="/js/services.js"></script>
   </body>
 </html>
