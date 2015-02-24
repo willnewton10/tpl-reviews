@@ -38,6 +38,31 @@ app.get('/api/amzn', function (req, res) {
     });
 });
 
-http.listen(3000, function () {
-    console.log('listening on 3000');
+var port = process.env.OPENSHIFT_NODEJS_PORT || 8080;;
+var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+
+
+var terminator = function(sig){
+    if (typeof sig === "string") {
+        console.log('%s: Received %s - terminating sample app ...',
+		    Date(Date.now()), sig);
+        process.exit(1);
+    }
+    console.log('%s: Node server stopped.', Date(Date.now()) );
+};
+
+
+//  Process on exit and signals.
+process.on('exit', function() { terminator(); });
+
+// Removed 'SIGPIPE' from the list - bugz 852598.
+['SIGHUP', 'SIGINT', 'SIGQUIT', 'SIGILL', 'SIGTRAP', 'SIGABRT',
+ 'SIGBUS', 'SIGFPE', 'SIGUSR1', 'SIGSEGV', 'SIGUSR2', 'SIGTERM'
+].forEach(function(element, index, array) {
+    process.on(element, function() { self.terminator(element); });
+});
+
+
+http.listen(port, ipaddress, function () {
+    console.log('listening on ' + port);
 });
