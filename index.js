@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 
 var amzn = require('./core/amzn');
 var tpl = require('./core/tpl');
+var vpl = require('./core/vpl');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -26,6 +27,19 @@ app.get('/api/tpl', function (req, res) {
 	res.json(books);
     });
 });
+app.get('/api/vpl', function (req, res) {
+    console.log('request: vpl... %s', JSON.stringify(req.query, null, 4));
+    if (! req.query.keywords) {
+	res.json([]);
+	return;
+    }
+    vpl.search(req.query.keywords, function (err, books) {
+	if (err) res.json(err);
+	console.log("VPL Books (1st 3)", JSON.stringify(books.slice(0,3), null, 4));
+	res.json(books);
+    });
+});
+
 app.get('/api/amzn', function (req, res) {
     console.log('request: amzn... %s', JSON.stringify(req.query, null, 4));
      if (! req.query.keywords) {
