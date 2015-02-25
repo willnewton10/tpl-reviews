@@ -2,11 +2,11 @@ angular.module('tplReviewsApp.services', [])
     .factory('tplApiService', function ($http) {
 	var tplApi = {};
 	
-	tplApi.getBooks = function (keywords) {
+	tplApi.getBooks = function (searchData) {
 	    return $http({ 
 		method: "GET", 
 		url: '/api/tpl', 
-		params: keywords 
+		params: searchData 
 	    });
 	};
 
@@ -15,11 +15,15 @@ angular.module('tplReviewsApp.services', [])
     .factory('amznApiService', function ($http) {
 	var amznApi = {};
 	
-	amznApi.getReviews = function (keywords) {
+	amznApi.getReviews = function (book) {
+
 	    return $http({ 
 		method: "GET",
 		url: '/api/amzn', 
-		params: keywords });
+		params: { 
+		    keywords: book.title + " " + book.author
+		}
+	    });
 	};
 
 	return amznApi;

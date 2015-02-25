@@ -1,25 +1,43 @@
 angular.module('tplReviewsApp.controllers', [])
-    .controller('tplReviewsController', function ($scope, tplApiService, amznApiService) {
+    .controller('tplReviewsController', tplReviewsController);
 
-	$scope.searchData = { keywords: "" };
-	$scope.books = [];
-	$scope.status = '';
-	var numReviewsToShow = 3;
-	
-	$scope.search = function () {
-	    $scope.status = "searching...";
-	    tplApiService.getBooks($scope.searchData)
-		.success(function (response) {
-		    console.log("response", response);
-		    $scope.status = response.length > 0 ? "" : "no results found";
-		    $scope.books = response;
-		    $scope.books.forEach(function (book) {
-			amznApiService.getReviews({ keywords: book.title }).success(function(response) {
-			    book.reviews = response.slice(0, numReviewsToShow);
-			});
-		    });
+function tplReviewsController ($scope, tplApiService, amznApiService) {
+    var $s = $scope;
 
-	    });
-	    return 0;
-	};
-    });
+    $s.searchData = { keywords: "" };
+    $s.books = [];
+    $s.status = '';
+    $s.numReviewsToShow = 3;
+    $s.search = search;
+    $s.getReviews = getReviews;
+
+    function showError (res) {
+	$s.status = "OMG, ERROR: " + JSON.stringify(res, null, 4);
+    }
+    function getReviews (book) {
+	book.reviews = [];
+	amznApiService
+	    .getReviews(book)
+	    .success(saveAt(book, "reviews"))
+	    .error(showError);
+    }
+    function handleBooks (books) {
+	$s.status = books.length > 0 
+	    ? "" : "no results found";
+	$s.books = books;
+	$s.books.slice(0,3).forEach(getReviews);
+    }
+    function search () {
+	$s.status = "searching...";
+	tplApiService
+	    .getBooks($s.searchData)
+	    .success(handleBooks)
+	    .error(showError);
+    }
+}
+
+function saveAt (obj, attr) {
+    return function (val) {
+	obj[attr] = val;
+    };
+}

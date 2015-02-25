@@ -76,23 +76,28 @@
 		</a>
 
 		<div>
-		  holds: {{ book.holds }}
-		  copies: {{ book.copies }}
+		  holds: {{ book.holds }},
+		  copies: {{ book.copies }},
 		  author: {{ book.author }}
 		</div>
 	      </div>
 
-	      <div ng-repeat="review in book.reviews" >
-		<!-- AMZN review information -->
-		<div class='col-sm-12'>
-		  <span ng-show="review.stars > -1">
-		    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-		    {{ review.stars }} (out of {{ review.numReviews }})
-		  </span>
-		  <span ng-show="review.stars == -1">
-		    (no reviews yet)
-		  </span>
+	      <div ng-show="book.reviews == null">
+		<button ng-click="getReviews(book)" class='btn btn-warning'>Get Reviews</button>
+	      </div>
+	      <div ng-show="book.reviews != null">
+		<div ng-repeat="review in book.reviews|limitTo:numReviewsToShow" >
+		  <!-- AMZN review information -->
+		  <div class='col-sm-12'>
+		    <span ng-show="review.stars > -1">
+		      <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+		      {{ review.stars }} (out of {{ review.numReviews }})
+		    </span>
+		    <span ng-show="review.stars == -1">
+		      (no reviews yet)
+		    </span>
 		    <a href='{{review.link}}' target='_blank'>{{ review.title }}</a>
+		  </div>
 		</div>
 	      </div>
 
