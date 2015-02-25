@@ -3,7 +3,7 @@ var request = require('request');
 var qs      = require('querystring');
 var cheerio = require('cheerio');
 
-var baseurl = "http://vpl.bibliocommons.com/";
+var baseurl = "http://vpl.bibliocommons.com";
 
 exports.search = function (keywords, callback) {
     try {
@@ -22,12 +22,9 @@ exports.search = function (keywords, callback) {
 function fixUp(books) {
     for (var b in books) {
 	var book = books[b];
-
-	if (book.link[0] != "/")
-	    book.link = "/" + book.link;
-	if (book.link.indexOf(baseurl) == -1) {
-	    book.link = baseurl +  book.link;
-	}
+	
+	if (book.link[0] == "/")
+	    book.link = book.link.slice(1);
     }
 }
 
