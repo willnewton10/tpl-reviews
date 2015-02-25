@@ -37,7 +37,7 @@ exports.url = function (keywords) {
 	    N: '37751 37918', /* search Real Books */
 	    No: '0',          /* paging            */
 	    Ntt: keywords.trim(),
-	    Erp: '10'         /* results per page  */
+	    Erp: '20'         /* results per page  */
 	});
 };
 
