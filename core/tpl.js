@@ -11,12 +11,25 @@ exports.search = function (keywords, callback) {
 	request(url, function (err, response, html) {
 	    if (err) callback(err);
 	    var books = exports.parse(html);
+	    fixUp(books);
 	    callback(null, books);
 	});
     } catch (e) {
 	callback(e);
     }
 };
+
+function fixUp(books) {
+    for (var b in books) {
+	var book = books[b];
+
+	if (book.link[0] != "/")
+	    book.link = "/" + book.link;
+	if (book.link.indexOf("www.torontopubliclibrary.ca") == -1) {
+	    book.link = "http://www.torontopubliclibrary.ca" + book.link;
+	}
+    }
+}
 
 exports.url = function (keywords) {
     return baseurl + "/search.jsp?" + 

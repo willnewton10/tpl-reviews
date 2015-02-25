@@ -15,19 +15,19 @@ app.get('/', function (req, res) {
     res.redirect("/index.html");
 });
 app.get('/api/tpl', function (req, res) {
-    console.log('request: tpl... %s', req.query);
+    console.log('request: tpl... %s', JSON.stringify(req.query, null, 4));
     if (! req.query.keywords) {
 	res.json([]);
 	return;
     }
     tpl.search(req.query.keywords, function (err, books) {
 	if (err) res.json(err);
-	console.log("TPL Books", JSON.stringify(books, null, 4));
+	console.log("TPL Books (1st 3)", JSON.stringify(books.slice(0,3), null, 4));
 	res.json(books);
     });
 });
 app.get('/api/amzn', function (req, res) {
-    console.log('request: amzn... %s', req.query);
+    console.log('request: amzn... %s', JSON.stringify(req.query, null, 4));
      if (! req.query.keywords) {
 	res.json([]);
 	return;
@@ -38,9 +38,9 @@ app.get('/api/amzn', function (req, res) {
     });
 });
 
+
 var port = process.env.OPENSHIFT_NODEJS_PORT || 8080;;
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
-
 
 var terminator = function(sig){
     if (typeof sig === "string") {
