@@ -5,6 +5,7 @@ Search the TPL for books and get the book reviews from Amazon.
 ###Try it
 
 [tpl-reviews](http://tpl-wn10.rhcloud.com)
+(If it doesn't load, try again. That's probably the OpenShift "gear" waking up.) 
 
 
 ###Why?
