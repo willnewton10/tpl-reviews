@@ -5,17 +5,18 @@ var cheerio = require('cheerio');
 
 var baseurl = "http://www.torontopubliclibrary.ca";
 
-exports.search = function (keywords, callback) {
+exports.search = function (querystring, callback) {
     try {
-	var url = exports.url(keywords);
-	request(url, function (err, response, html) {
-	    if (err) callback(err);
-	    var books = exports.parse(html);
-	    fixUp(books);
-	    callback(null, books);
-	});
+		var url = exports.url(querystring);
+		console.log("requesting TPL URL: " + url);
+		request(url, function (err, response, html) {
+			if (err) callback(err);
+			var books = exports.parse(html);
+			fixUp(books);
+			callback(null, books);
+		});
     } catch (e) {
-	callback(e);
+		console.log(e);
     }
 };
 
@@ -31,14 +32,20 @@ function fixUp(books) {
     }
 }
 
-exports.url = function (keywords) {
-    return baseurl + "/search.jsp?" + 
-	qs.stringify({
-	    N: '37751 37918', /* search Real Books */
+exports.url = function (incomingRequestQuerystring) {
+	var params = {
 	    No: '0',          /* paging            */
-	    Ntt: keywords.trim(),
+	    Ntt: incomingRequestQuerystring.keywords.trim(),
 	    Erp: '20'         /* results per page  */
-	});
+	};
+	var BORROW_AND_TAKE_HOME = '37751';
+	var REGULAR_PRINT_BOOKS = '37918';
+	var EBOOKS = '38574';
+	var typesOfBooks = [BORROW_AND_TAKE_HOME]
+	var ebooks = incomingRequestQuerystring.ebooks == '1';
+	typesOfBooks.push(ebooks ? EBOOKS: REGULAR_PRINT_BOOKS);
+	params.N = typesOfBooks.join(" ");
+    return baseurl + "/search.jsp?" +  qs.stringify(params);
 };
 
 exports.parse = function (html) {

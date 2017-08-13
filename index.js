@@ -18,13 +18,13 @@ app.get('/', function (req, res) {
 app.get('/api/tpl', function (req, res) {
     console.log('request: tpl... %s', JSON.stringify(req.query, null, 4));
     if (! req.query.keywords) {
-	res.json([]);
-	return;
+		res.json([]);
+		return;
     }
-    tpl.search(req.query.keywords, function (err, books) {
+    tpl.search(req.query, function (err, books) {
 	if (err) res.json(err);
-	console.log("TPL Books (1st 3)", JSON.stringify(books.slice(0,3), null, 4));
-	res.json(books);
+		console.log("TPL Books (1st 3)", JSON.stringify(books.slice(0,3), null, 4));
+		res.json(books);
     });
 });
 app.get('/api/vpl', function (req, res) {

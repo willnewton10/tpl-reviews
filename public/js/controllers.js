@@ -30,6 +30,7 @@ function tplReviewsController ($scope, tplApiService, amznApiService) {
 	$s.books.slice(0,3).forEach(getReviews);
     }
     function search () {
+		$s.searchData['ebooks'] = document.getElementsByName("ebooks")[0].checked ? 1 : 0;
 	$s.status = "searching...";
 	tplApiService
 	    .getBooks($s.searchData)
