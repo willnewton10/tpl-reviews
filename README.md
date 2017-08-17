@@ -2,12 +2,6 @@
 
 Search the TPL for books and get the book reviews from Amazon.
 
-### Try it
-
-[tpl-reviews](http://tpl-wn10.rhcloud.com)
-(If it doesn't load, try again. That's probably the OpenShift "gear" waking up.) 
-
-
 ### Why?
 
 I live in Toronto and use the Toronto Public Library (the "TPL") _a lot_. I find myself spending too much time browsing their online catalogue for books and then cross referencing with Amazon to see if the book has good reviews. I really only want to read the good books.
