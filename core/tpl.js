@@ -95,8 +95,8 @@ function getLink ($d) {
     return $d.find('div.title a').first().attr('href');
 }
 function getImage ($d) {
-    return $d
-	.find('div.image-container.grid_2.alpha ' +
+	return $d
+	.find('div.image-container ' +
 	      'a ' + 
 	      'img.image._simple')
 	.attr('src');
