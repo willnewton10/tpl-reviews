@@ -9,7 +9,11 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-    
+    <style>
+		.book-image { 
+			width: 120px;
+		}
+	</style>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.js"></script>
   </head>
 
@@ -30,8 +34,6 @@
 	      <li>1st 3 amazon amazon reviews</li>
 	    </ul>
 	  </p>
-
-	  see also: <a href="/vpl.html">VPL reviews - Vancouver Public Library</a>
 	</div>
       </div>
 
@@ -59,7 +61,8 @@
 	<!-- TPL book image -->
 	<div class='col-sm-1'>
 	  <a href='{{ book.link }}' target="_blank">
-	    <img src="{{ book.image }}" err-src="http://www.torontopubliclibrary.ca/images/bibs/SC/no-image-book.png" />
+	    <img class="book-image" src="{{ book.image }}" 
+			err-src="http://www.torontopubliclibrary.ca/images/bibs/SC/no-image-book.png" />
 	  </a>
 	</div>
 	
