@@ -36,5 +36,6 @@ amzn.search('my search keywords', function (err, books) {
 ### Run locally:
  1. You probably need `node.js` and `npm`
  2. After cloning, run `npm install` in the directory, since I have the `node_modules` folder in `.gitignore`
- 3. The tests are run with `mocha.js`. Use the command `npm test`.
- 4. Run your browser at 127.0.0.1:8080
+ 3. Use the command `npm test` to run the mocha tests
+ 4. Run the app with `node index.js`
+ 5. Run your browser at 127.0.0.1:8080
